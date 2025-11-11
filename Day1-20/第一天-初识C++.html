@@ -1,190 +1,481 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<title>C++ 第1天：初识C++</title>
-<style>
-body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial; line-height:1.6; padding:20px; max-width:900px; margin:auto; }
-pre { background:#f6f8fa; padding:12px; overflow:auto; }
-code { background:#f6f8fa; padding:2px 4px; border-radius:4px; }
-table { border-collapse:collapse; width:100%; margin-bottom:1em; }
-table, th, td { border:1px solid #ddd; padding:8px; }
-h1,h2,h3 { color:#111; }
-blockquote { border-left:4px solid #ddd; padding-left:10px; color:#555; margin:0 0 10px 0; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1天：初识C++ - C++ 100 Days</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2c3e50;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            font-size: 1.8em;
+        }
+        
+        h2 .emoji {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 12px 0;
+            padding-left: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4f8;
+            transform: translateY(-1px);
+            transition: all 0.2s ease;
+        }
+        
+        blockquote {
+            border-left: 5px solid #3498db;
+            background: linear-gradient(135deg, #e8f4f8, #d6eaf8);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            font-size: 1.1em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-box h3 {
+            color: white;
+            margin-top: 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .task-box {
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .task-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .platform-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #34495e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>🧭 C++语言基础体系 · 第1天：初识C++</h1>
+            <div class="subtitle">开启你的C++编程之旅</div>
+        </div>
+        
+        <div class="content">
+            <h2><span class="emoji">🎯</span>学习目标</h2>
+            <ul>
+                <li>了解什么是C++</li>
+                <li>掌握C++的主要应用领域</li>
+                <li>学会安装C++编译器</li>
+                <li>了解常用的C++开发工具（IDE）及其作用</li>
+            </ul>
 
-<h1>🧭 C++语言基础体系 · 第1天：初识C++</h1>
+            <h2><span class="emoji">📘</span>一、什么是C++</h2>
+            <p>C++ 是一种 <span class="highlight">通用型、面向对象的高级编程语言</span>，由 <span class="highlight">Bjarne Stroustrup</span> 于 1979 年在 C 语言的基础上发展而来。</p>
+            <p>它结合了 <span class="highlight">C语言的高性能</span> 与 <span class="highlight">面向对象的抽象能力</span>，是目前世界上使用最广泛的编程语言之一。</p>
+            
+            <blockquote>
+                "既能贴近硬件，又能构建大型系统的语言。"
+            </blockquote>
 
-<h2>🎯 学习目标</h2>
-<ul>
-<li>了解什么是C++</li>
-<li>掌握C++的主要应用领域</li>
-<li>学会安装C++编译器</li>
-<li>了解常用的C++开发工具（IDE）及其作用</li>
-</ul>
+            <h2><span class="emoji">🚀</span>二、C++能做什么？</h2>
+            <table>
+                <tr>
+                    <th>应用领域</th>
+                    <th>示例</th>
+                </tr>
+                <tr>
+                    <td>系统开发</td>
+                    <td>操作系统、驱动程序、底层库</td>
+                </tr>
+                <tr>
+                    <td>游戏开发</td>
+                    <td>Unreal Engine（虚幻引擎）、Unity底层</td>
+                </tr>
+                <tr>
+                    <td>桌面应用</td>
+                    <td>Visual Studio、QT、Notepad++</td>
+                </tr>
+                <tr>
+                    <td>嵌入式系统</td>
+                    <td>单片机、物联网设备、芯片固件</td>
+                </tr>
+                <tr>
+                    <td>高性能计算</td>
+                    <td>科学计算、图像处理、仿真系统</td>
+                </tr>
+                <tr>
+                    <td>金融与量化</td>
+                    <td>高频交易系统、风控引擎</td>
+                </tr>
+                <tr>
+                    <td>人工智能底层</td>
+                    <td>TensorFlow、PyTorch 的核心都是C++实现</td>
+                </tr>
+            </table>
 
-<hr/>
+            <blockquote>
+                💡 <strong>一句话总结：</strong><br>
+                C++ 是一门"能干到底层、能写大型项目"的通用语言。
+            </blockquote>
 
-<h2>📘 一、什么是C++</h2>
+            <h2><span class="emoji">🧩</span>三、C++编译器（Compiler）是什么？</h2>
+            <p>编译器是把我们写的 <code>.cpp</code> 源代码 <span class="highlight">翻译成计算机能执行的程序</span> 的工具。</p>
+            
+            <h3>常见的C++编译器：</h3>
+            <table>
+                <tr>
+                    <th>编译器名称</th>
+                    <th>平台</th>
+                    <th>说明</th>
+                </tr>
+                <tr>
+                    <td>GCC / G++</td>
+                    <td>Windows / Linux / macOS</td>
+                    <td>最常见、开源、免费</td>
+                </tr>
+                <tr>
+                    <td>Clang</td>
+                    <td>macOS / Linux</td>
+                    <td>编译速度快、输出信息友好</td>
+                </tr>
+                <tr>
+                    <td>MSVC</td>
+                    <td>Windows</td>
+                    <td>Visual Studio 自带的官方编译器</td>
+                </tr>
+            </table>
 
-<p>C++ 是一种 <strong>通用型、面向对象的高级编程语言</strong>，由 <strong>Bjarne Stroustrup</strong> 于 1979 年在 C 语言的基础上发展而来。  </p>
-<p>它结合了 <strong>C语言的高性能</strong> 与 <strong>面向对象的抽象能力</strong>，是目前世界上使用最广泛的编程语言之一。</p>
+            <h2><span class="emoji">⚙️</span>四、安装C++编译器</h2>
+            
+            <div class="platform-section">
+                <h3>✅ Windows 用户</h3>
+                <p><strong>推荐安装：</strong></p>
+                <ul>
+                    <li><strong>MinGW（轻量）</strong><br>
+                        官网：<a href="https://www.mingw-w64.org/">https://www.mingw-w64.org/</a><br>
+                        安装后将 <code>bin</code> 路径加入环境变量。
+                    </li>
+                    <li><strong>Visual Studio（完整版）</strong><br>
+                        官网：<a href="https://visualstudio.microsoft.com/">https://visualstudio.microsoft.com/</a><br>
+                        安装时勾选「使用C++的桌面开发」。
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="platform-section">
+                <h3>✅ macOS 用户</h3>
+                <p>打开终端输入：</p>
+                <div class="code-block">
+                    xcode-select --install
+                </div>
+                <p>自动安装 Xcode Command Line Tools（含 Clang 编译器）。</p>
+            </div>
+            
+            <div class="platform-section">
+                <h3>✅ Linux 用户</h3>
+                <p>打开终端输入：</p>
+                <div class="code-block">
+                    sudo apt update<br>
+                    sudo apt install g++
+                </div>
+            </div>
 
-<p>C++ 常被称为：</p>
-<blockquote>“既能贴近硬件，又能构建大型系统的语言。”</blockquote>
+            <h2><span class="emoji">💻</span>五、什么是IDE？</h2>
+            <p><strong>IDE（Integrated Development Environment，集成开发环境）</strong>是一个 <span class="highlight">编写、调试、运行程序的完整工具平台</span>。</p>
+            <p>相比普通文本编辑器，IDE 让编程更高效：</p>
+            
+            <table>
+                <tr>
+                    <th>功能</th>
+                    <th>作用</th>
+                </tr>
+                <tr>
+                    <td>语法高亮</td>
+                    <td>让代码更清晰</td>
+                </tr>
+                <tr>
+                    <td>自动补全</td>
+                    <td>输入更快</td>
+                </tr>
+                <tr>
+                    <td>一键编译运行</td>
+                    <td>不用手动输入命令</td>
+                </tr>
+                <tr>
+                    <td>调试工具</td>
+                    <td>发现错误更容易</td>
+                </tr>
+            </table>
 
-<hr/>
+            <h2><span class="emoji">🧰</span>六、常用的C++ IDE推荐</h2>
+            <table>
+                <tr>
+                    <th>IDE名称</th>
+                    <th>适用系统</th>
+                    <th>特点</th>
+                </tr>
+                <tr>
+                    <td><strong>Visual Studio</strong></td>
+                    <td>Windows</td>
+                    <td>官方IDE，功能最强大</td>
+                </tr>
+                <tr>
+                    <td><strong>CLion</strong></td>
+                    <td>Windows / macOS / Linux</td>
+                    <td>智能提示强大，界面现代</td>
+                </tr>
+                <tr>
+                    <td><strong>Code::Blocks</strong></td>
+                    <td>Windows / Linux</td>
+                    <td>轻量，配置简单</td>
+                </tr>
+                <tr>
+                    <td><strong>Dev-C++</strong></td>
+                    <td>Windows</td>
+                    <td>初学者经典工具</td>
+                </tr>
+                <tr>
+                    <td><strong>VS Code + 插件</strong></td>
+                    <td>全平台</td>
+                    <td>轻便通用，需配置编译环境</td>
+                </tr>
+            </table>
+            
+            <blockquote>
+                💡 <strong>建议：</strong><br>
+                初学者推荐使用 <strong>VS Code</strong> 或 <strong>Dev-C++</strong>，上手快，界面简洁。
+            </blockquote>
 
-<h2>🚀 二、C++能做什么？</h2>
+            <h2><span class="emoji">🧠</span>七、你的第一个目标</h2>
+            <div class="task-box">
+                <h3>✅ 完成清单</h3>
+                <ul>
+                    <li>安装好一个C++编译器（如G++）</li>
+                    <li>配置并运行一个IDE（如VS Code或Dev-C++）</li>
+                    <li>成功运行第一个C++程序</li>
+                </ul>
+            </div>
+            
+            <p>第一个C++程序示例：</p>
+            <div class="code-block">
+                #include &lt;iostream&gt;<br>
+                using namespace std;<br>
+                <br>
+                int main() {<br>
+                &nbsp;&nbsp;cout &lt;&lt; "Hello, C++!";<br>
+                &nbsp;&nbsp;return 0;<br>
+                }
+            </div>
 
-<table>
-<thead><tr><th>应用领域</th><th>示例</th></tr></thead>
-<tbody>
-<tr><td>系统开发</td><td>操作系统、驱动程序、底层库</td></tr>
-<tr><td>游戏开发</td><td>Unreal Engine（虚幻引擎）、Unity底层</td></tr>
-<tr><td>桌面应用</td><td>Visual Studio、QT、Notepad++</td></tr>
-<tr><td>嵌入式系统</td><td>单片机、物联网设备、芯片固件</td></tr>
-<tr><td>高性能计算</td><td>科学计算、图像处理、仿真系统</td></tr>
-<tr><td>金融与量化</td><td>高频交易系统、风控引擎</td></tr>
-<tr><td>人工智能底层</td><td>TensorFlow、PyTorch 的核心都是C++实现</td></tr>
-</tbody></table>
+            <h2><span class="emoji">🧩</span>八、练习任务</h2>
+            
+            <h3>练习1：确认环境</h3>
+            <p>安装好C++编译器，使用命令：</p>
+            <div class="code-block">
+                g++ --version
+            </div>
+            <p>如果显示版本号，说明安装成功。</p>
+            
+            <h3>练习2：运行你的第一个程序</h3>
+            <p>在IDE中创建新项目，输入上面的"Hello, C++!"程序并运行。</p>
+            
+            <h3>练习3（思考题）：</h3>
+            <ul>
+                <li>C++ 与 Python 的主要区别是什么？</li>
+                <li>为什么大型游戏引擎普遍使用C++？</li>
+                <li>IDE 与 编译器 有何不同？</li>
+            </ul>
 
-<p>💡 <strong>一句话总结：</strong></p>
-<blockquote>C++ 是一门“能干到底层、能写大型项目”的通用语言。</blockquote>
-
-<hr/>
-
-<h2>🧩 三、C++编译器（Compiler）是什么？</h2>
-
-<p>编译器是把我们写的 <code>.cpp</code> 源代码 <strong>翻译成计算机能执行的程序</strong> 的工具。</p>
-
-<p>常见的C++编译器有：</p>
-<table>
-<thead><tr><th>编译器名称</th><th>平台</th><th>说明</th></tr></thead>
-<tbody>
-<tr><td>GCC / G++</td><td>Windows / Linux / macOS</td><td>最常见、开源、免费</td></tr>
-<tr><td>Clang</td><td>macOS / Linux</td><td>编译速度快、输出信息友好</td></tr>
-<tr><td>MSVC</td><td>Windows</td><td>Visual Studio 自带的官方编译器</td></tr>
-</tbody></table>
-
-<hr/>
-
-<h2>⚙️ 四、安装C++编译器</h2>
-
-<h3>✅ Windows 用户</h3>
-<p>推荐安装：</p>
-<ol>
-<li>**MinGW（轻量）**</li>
-<li>官网：[https://www.mingw-w64.org/](https://www.mingw-w64.org/)</li>
-<li>安装后将 `bin` 路径加入环境变量。</li>
-<li>**Visual Studio（完整版）**</li>
-<li>官网：[https://visualstudio.microsoft.com/](https://visualstudio.microsoft.com/)</li>
-<li>安装时勾选「使用C++的桌面开发」。</li>
-</ol>
-
-<h3>✅ macOS 用户</h3>
-<ul>
-<li>打开终端输入：</li>
-<pre><code>
-xcode-select --install
-</code></pre>
-<p>自动安装 Xcode Command Line Tools（含 Clang 编译器）。</p>
-</ul>
-
-<h3>✅ Linux 用户</h3>
-<ul>
-<li>打开终端输入：</li>
-<pre><code>
-sudo apt update
-sudo apt install g++
-</code></pre>
-</ul>
-
-<hr/>
-
-<h2>💻 五、什么是IDE？</h2>
-
-<p><strong>IDE（Integrated Development Environment，集成开发环境）</strong></p>
-<p>是一个 <strong>编写、调试、运行程序的完整工具平台</strong>。</p>
-
-<p>相比普通文本编辑器，IDE 让编程更高效：</p>
-
-<table>
-<thead><tr><th>功能</th><th>作用</th></tr></thead>
-<tbody>
-<tr><td>语法高亮</td><td>让代码更清晰</td></tr>
-<tr><td>自动补全</td><td>输入更快</td></tr>
-<tr><td>一键编译运行</td><td>不用手动输入命令</td></tr>
-<tr><td>调试工具</td><td>发现错误更容易</td></tr>
-</tbody></table>
-
-<hr/>
-
-<h2>🧰 六、常用的C++ IDE推荐</h2>
-
-<table>
-<thead><tr><th>IDE名称</th><th>适用系统</th><th>特点</th></tr></thead>
-<tbody>
-<tr><td>**Visual Studio**</td><td>Windows</td><td>官方IDE，功能最强大</td></tr>
-<tr><td>**CLion**</td><td>Windows / macOS / Linux</td><td>智能提示强大，界面现代</td></tr>
-<tr><td>**Code::Blocks**</td><td>Windows / Linux</td><td>轻量，配置简单</td></tr>
-<tr><td>**Dev-C++**</td><td>Windows</td><td>初学者经典工具</td></tr>
-<tr><td>**VS Code + 插件**</td><td>全平台</td><td>轻便通用，需配置编译环境</td></tr>
-</tbody></table>
-
-<p>💡 建议：</p>
-<blockquote>初学者推荐使用 **VS Code** 或 **Dev-C++**，上手快，界面简洁。</blockquote>
-
-<hr/>
-
-<h2>🧠 七、你的第一个目标</h2>
-<p>✅ 安装好一个C++编译器（如G++）  </p>
-<p>✅ 配置并运行一个IDE（如VS Code或Dev-C++）  </p>
-<p>✅ 成功运行一句话程序：</p>
-
-<h1>include &lt;bits/stdc++.h&gt;</h1>
-<p>using namespace std;</p>
-
-<p>int main() {</p>
-<p>  cout << "Hello, C++!";</p>
-<p>  return 0;</p>
-<p>}</p>
-
-<hr/>
-
-<h2>🧩 八、练习任务</h2>
-
-<h3>练习1：确认环境</h3>
-<p>安装好C++编译器，使用命令：</p>
-<pre><code>
-g++ --version
-</code></pre>
-<p>如果显示版本号，说明安装成功。</p>
-
-<h3>练习2：运行你的第一个程序</h3>
-<h3>练习3（思考题）：</h3>
-<ol>
-<li>C++ 与 Python 的主要区别是什么？</li>
-<li>为什么大型游戏引擎普遍使用C++？</li>
-<li>IDE 与 编译器 有何不同？</li>
-</ol>
-
-<hr/>
-
-<h2>✅ 今日总结</h2>
-
-<table>
-<thead><tr><th>概念</th><th>内容</th></tr></thead>
-<tbody>
-<tr><td>C++</td><td>高性能、通用编程语言</td></tr>
-<tr><td>编译器</td><td>将代码翻译为机器可执行程序</td></tr>
-<tr><td>IDE</td><td>编程工作台，集成编辑与调试功能</td></tr>
-<tr><td>C++用途</td><td>系统、游戏、嵌入式、AI、金融</td></tr>
-<tr><td>今日目标</td><td>配好环境，能输出 “Hello, C++!”</td></tr>
-</tbody></table>
-
-<hr/>
+            <div class="summary-box">
+                <h3>✅ 今日总结</h3>
+                <table>
+                    <tr>
+                        <th>概念</th>
+                        <th>内容</th>
+                    </tr>
+                    <tr>
+                        <td>C++</td>
+                        <td>高性能、通用编程语言</td>
+                    </tr>
+                    <tr>
+                        <td>编译器</td>
+                        <td>将代码翻译为机器可执行程序</td>
+                    </tr>
+                    <tr>
+                        <td>IDE</td>
+                        <td>编程工作台，集成编辑与调试功能</td>
+                    </tr>
+                    <tr>
+                        <td>C++用途</td>
+                        <td>系统、游戏、嵌入式、AI、金融</td>
+                    </tr>
+                    <tr>
+                        <td>今日目标</td>
+                        <td>配好环境，能输出 "Hello, C++!"</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="code-block">
+                输入并运行：<br>
+                Hello, C++!
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>C++ 100 Days · 第1天 · 初识C++</p>
+        </div>
+    </div>
 </body>
 </html>
