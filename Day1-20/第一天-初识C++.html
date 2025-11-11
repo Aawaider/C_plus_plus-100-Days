@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>C++ 第1天：初识C++</title>
+<style>
+body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial; line-height:1.6; padding:20px; max-width:900px; margin:auto; }
+pre { background:#f6f8fa; padding:12px; overflow:auto; }
+code { background:#f6f8fa; padding:2px 4px; border-radius:4px; }
+table { border-collapse:collapse; width:100%; margin-bottom:1em; }
+table, th, td { border:1px solid #ddd; padding:8px; }
+h1,h2,h3 { color:#111; }
+blockquote { border-left:4px solid #ddd; padding-left:10px; color:#555; margin:0 0 10px 0; }
+</style>
+</head>
+<body>
+
+<h1>🧭 C++语言基础体系 · 第1天：初识C++</h1>
+
+<h2>🎯 学习目标</h2>
+<ul>
+<li>了解什么是C++</li>
+<li>掌握C++的主要应用领域</li>
+<li>学会安装C++编译器</li>
+<li>了解常用的C++开发工具（IDE）及其作用</li>
+</ul>
+
+<hr/>
+
+<h2>📘 一、什么是C++</h2>
+
+<p>C++ 是一种 <strong>通用型、面向对象的高级编程语言</strong>，由 <strong>Bjarne Stroustrup</strong> 于 1979 年在 C 语言的基础上发展而来。  </p>
+<p>它结合了 <strong>C语言的高性能</strong> 与 <strong>面向对象的抽象能力</strong>，是目前世界上使用最广泛的编程语言之一。</p>
+
+<p>C++ 常被称为：</p>
+<blockquote>“既能贴近硬件，又能构建大型系统的语言。”</blockquote>
+
+<hr/>
+
+<h2>🚀 二、C++能做什么？</h2>
+
+<table>
+<thead><tr><th>应用领域</th><th>示例</th></tr></thead>
+<tbody>
+<tr><td>系统开发</td><td>操作系统、驱动程序、底层库</td></tr>
+<tr><td>游戏开发</td><td>Unreal Engine（虚幻引擎）、Unity底层</td></tr>
+<tr><td>桌面应用</td><td>Visual Studio、QT、Notepad++</td></tr>
+<tr><td>嵌入式系统</td><td>单片机、物联网设备、芯片固件</td></tr>
+<tr><td>高性能计算</td><td>科学计算、图像处理、仿真系统</td></tr>
+<tr><td>金融与量化</td><td>高频交易系统、风控引擎</td></tr>
+<tr><td>人工智能底层</td><td>TensorFlow、PyTorch 的核心都是C++实现</td></tr>
+</tbody></table>
+
+<p>💡 <strong>一句话总结：</strong></p>
+<blockquote>C++ 是一门“能干到底层、能写大型项目”的通用语言。</blockquote>
+
+<hr/>
+
+<h2>🧩 三、C++编译器（Compiler）是什么？</h2>
+
+<p>编译器是把我们写的 <code>.cpp</code> 源代码 <strong>翻译成计算机能执行的程序</strong> 的工具。</p>
+
+<p>常见的C++编译器有：</p>
+<table>
+<thead><tr><th>编译器名称</th><th>平台</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>GCC / G++</td><td>Windows / Linux / macOS</td><td>最常见、开源、免费</td></tr>
+<tr><td>Clang</td><td>macOS / Linux</td><td>编译速度快、输出信息友好</td></tr>
+<tr><td>MSVC</td><td>Windows</td><td>Visual Studio 自带的官方编译器</td></tr>
+</tbody></table>
+
+<hr/>
+
+<h2>⚙️ 四、安装C++编译器</h2>
+
+<h3>✅ Windows 用户</h3>
+<p>推荐安装：</p>
+<ol>
+<li>**MinGW（轻量）**</li>
+<li>官网：[https://www.mingw-w64.org/](https://www.mingw-w64.org/)</li>
+<li>安装后将 `bin` 路径加入环境变量。</li>
+<li>**Visual Studio（完整版）**</li>
+<li>官网：[https://visualstudio.microsoft.com/](https://visualstudio.microsoft.com/)</li>
+<li>安装时勾选「使用C++的桌面开发」。</li>
+</ol>
+
+<h3>✅ macOS 用户</h3>
+<ul>
+<li>打开终端输入：</li>
+<pre><code>
+xcode-select --install
+</code></pre>
+<p>自动安装 Xcode Command Line Tools（含 Clang 编译器）。</p>
+</ul>
+
+<h3>✅ Linux 用户</h3>
+<ul>
+<li>打开终端输入：</li>
+<pre><code>
+sudo apt update
+sudo apt install g++
+</code></pre>
+</ul>
+
+<hr/>
+
+<h2>💻 五、什么是IDE？</h2>
+
+<p><strong>IDE（Integrated Development Environment，集成开发环境）</strong></p>
+<p>是一个 <strong>编写、调试、运行程序的完整工具平台</strong>。</p>
+
+<p>相比普通文本编辑器，IDE 让编程更高效：</p>
+
+<table>
+<thead><tr><th>功能</th><th>作用</th></tr></thead>
+<tbody>
+<tr><td>语法高亮</td><td>让代码更清晰</td></tr>
+<tr><td>自动补全</td><td>输入更快</td></tr>
+<tr><td>一键编译运行</td><td>不用手动输入命令</td></tr>
+<tr><td>调试工具</td><td>发现错误更容易</td></tr>
+</tbody></table>
+
+<hr/>
+
+<h2>🧰 六、常用的C++ IDE推荐</h2>
+
+<table>
+<thead><tr><th>IDE名称</th><th>适用系统</th><th>特点</th></tr></thead>
+<tbody>
+<tr><td>**Visual Studio**</td><td>Windows</td><td>官方IDE，功能最强大</td></tr>
+<tr><td>**CLion**</td><td>Windows / macOS / Linux</td><td>智能提示强大，界面现代</td></tr>
+<tr><td>**Code::Blocks**</td><td>Windows / Linux</td><td>轻量，配置简单</td></tr>
+<tr><td>**Dev-C++**</td><td>Windows</td><td>初学者经典工具</td></tr>
+<tr><td>**VS Code + 插件**</td><td>全平台</td><td>轻便通用，需配置编译环境</td></tr>
+</tbody></table>
+
+<p>💡 建议：</p>
+<blockquote>初学者推荐使用 **VS Code** 或 **Dev-C++**，上手快，界面简洁。</blockquote>
+
+<hr/>
+
+<h2>🧠 七、你的第一个目标</h2>
+<p>✅ 安装好一个C++编译器（如G++）  </p>
+<p>✅ 配置并运行一个IDE（如VS Code或Dev-C++）  </p>
+<p>✅ 成功运行一句话程序：</p>
+
+<h1>include &lt;bits/stdc++.h&gt;</h1>
+<p>using namespace std;</p>
+
+<p>int main() {</p>
+<p>  cout << "Hello, C++!";</p>
+<p>  return 0;</p>
+<p>}</p>
+
+<hr/>
+
+<h2>🧩 八、练习任务</h2>
+
+<h3>练习1：确认环境</h3>
+<p>安装好C++编译器，使用命令：</p>
+<pre><code>
+g++ --version
+</code></pre>
+<p>如果显示版本号，说明安装成功。</p>
+
+<h3>练习2：运行你的第一个程序</h3>
+<h3>练习3（思考题）：</h3>
+<ol>
+<li>C++ 与 Python 的主要区别是什么？</li>
+<li>为什么大型游戏引擎普遍使用C++？</li>
+<li>IDE 与 编译器 有何不同？</li>
+</ol>
+
+<hr/>
+
+<h2>✅ 今日总结</h2>
+
+<table>
+<thead><tr><th>概念</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>C++</td><td>高性能、通用编程语言</td></tr>
+<tr><td>编译器</td><td>将代码翻译为机器可执行程序</td></tr>
+<tr><td>IDE</td><td>编程工作台，集成编辑与调试功能</td></tr>
+<tr><td>C++用途</td><td>系统、游戏、嵌入式、AI、金融</td></tr>
+<tr><td>今日目标</td><td>配好环境，能输出 “Hello, C++!”</td></tr>
+</tbody></table>
+
+<hr/>
+</body>
+</html>
