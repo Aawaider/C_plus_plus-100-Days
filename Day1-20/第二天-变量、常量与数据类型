@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2天：变量、常量与数据类型 - C++ 100 Days</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2c3e50;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            font-size: 1.8em;
+        }
+        
+        h2 .emoji {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 12px 0;
+            padding-left: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4f8;
+            transform: translateY(-1px);
+            transition: all 0.2s ease;
+        }
+        
+        blockquote {
+            border-left: 5px solid #3498db;
+            background: linear-gradient(135deg, #e8f4f8, #d6eaf8);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            font-size: 1.1em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            line-height: 1.5;
+        }
+        
+        .code-block .comment {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-box h3 {
+            color: white;
+            margin-top: 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .task-box {
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .task-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .example-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .output-box {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .section {
+            margin: 40px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #9b59b6;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #34495e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .tip {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #e17055;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧭 C++语言基础体系 · 第2天：变量、常量与数据类型</h1>
+            <div class="subtitle">掌握程序基础结构与数据操作</div>
+        </div>
+        
+        <div class="content">
+            <h2><span class="emoji">🎯</span>学习目标</h2>
+            <ul>
+                <li>掌握C++程序的基本结构</li>
+                <li>理解输入输出与主函数</li>
+                <li>了解头文件的作用及常用头文件</li>
+                <li>学习变量、常量与数据类型</li>
+                <li>掌握类型转换的基本规则</li>
+            </ul>
+
+            <div class="section">
+                <h2><span class="emoji">🧩</span>一、C++程序的基本结构</h2>
+                
+                <div class="code-block">
+#include &lt;bits/stdc++.h&gt;   <span class="comment">// 万能头文件(大部分比赛均可使用，但是一定要牢记iostream等库文件的灵活运用)</span>
+using namespace std;       <span class="comment">// 使用标准命名空间</span>
+
+int main() {               <span class="comment">// 主函数，程序从这里开始执行</span>
+    cout &lt;&lt; "Hello, C++!"; <span class="comment">// 输出语句</span>
+    return 0;              <span class="comment">// 程序正常结束</span>
+}
+                </div>
+
+                <h3>🔍 每一行的作用</h3>
+                <table>
+                    <tr>
+                        <th>行号</th>
+                        <th>代码</th>
+                        <th>说明</th>
+                    </tr>
+                    <tr>
+                        <td>①</td>
+                        <td><code>#include &lt;bits/stdc++.h&gt;</code></td>
+                        <td>导入所有常用标准库（输入输出、数学函数、字符串等）</td>
+                    </tr>
+                    <tr>
+                        <td>②</td>
+                        <td><code>using namespace std;</code></td>
+                        <td>让我们在使用 <code>cout</code>、<code>cin</code> 等时不必写 <code>std::cout</code></td>
+                    </tr>
+                    <tr>
+                        <td>③</td>
+                        <td><code>int main() {</code></td>
+                        <td>主函数入口，程序从这里开始执行</td>
+                    </tr>
+                    <tr>
+                        <td>④</td>
+                        <td><code>cout &lt;&lt; "Hello, C++!";</code></td>
+                        <td>向屏幕输出内容</td>
+                    </tr>
+                    <tr>
+                        <td>⑤</td>
+                        <td><code>return 0;</code></td>
+                        <td>表示程序执行成功并结束</td>
+                    </tr>
+                </table>
+                
+                <div class="tip">
+                    💡 <strong>说明：</strong><br>
+                    - 所有C++程序都必须包含一个 <code>main()</code> 函数<br>
+                    - <code>cout</code> 表示输出（console out）<br>
+                    - <code>cin</code> 表示输入（console in）
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="emoji">🧱</span>二、输入与输出语句</h2>
+                
+                <h3>（1）输出语句</h3>
+                <div class="code-block">
+cout &lt;&lt; "Hello, World!";
+                </div>
+                <p>🔹 <code>&lt;&lt;</code> 表示"输出到"<br>
+                🔹 可连续输出多个内容：</p>
+                
+                <div class="code-block">
+cout &lt;&lt; "Age: " &lt;&lt; 18 &lt;&lt; " years";
+                </div>
+                
+                <p>输出：</p>
+                <div class="output-box">
+Age: 18 years
+                </div>
+
+                <h3>（2）输入语句</h3>
+                <div class="code-block">
+int age;
+cin >> age;
+                </div>
+                <p>🔹 <code>&gt;&gt;</code> 表示"从键盘输入到变量中"<br>
+                🔹 用户输入内容后按 Enter 即可。</p>
+            </div>
+
+            <div class="section">
+                <h2><span class="emoji">🧰</span>三、常用头文件</h2>
+                
+                <table>
+                    <tr>
+                        <th>头文件</th>
+                        <th>功能</th>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;bits/stdc++.h&gt;</code></td>
+                        <td>包含几乎所有常用标准库（推荐初学者使用）</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;iostream&gt;</code></td>
+                        <td>输入输出流（cin、cout）</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;cmath&gt;</code></td>
+                        <td>数学函数（sqrt, pow, sin, cos等）</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;string&gt;</code></td>
+                        <td>字符串类型支持</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;iomanip&gt;</code></td>
+                        <td>控制输出格式（如小数精度）</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;algorithm&gt;</code></td>
+                        <td>常用算法（sort, max, min等）</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2><span class="emoji">🔢</span>四、变量与常量</h2>
+                
+                <div class="code-block">
+int a = 10;           <span class="comment">// 变量</span>
+const double PI = 3.14; <span class="comment">// 常量</span>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>种类</th>
+                        <th>特点</th>
+                        <th>示例</th>
+                    </tr>
+                    <tr>
+                        <td>变量</td>
+                        <td>可修改</td>
+                        <td><code>int age = 18;</code></td>
+                    </tr>
+                    <tr>
+                        <td>常量</td>
+                        <td>不可修改</td>
+                        <td><code>const double PI = 3.14;</code></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2><span class="emoji">📊</span>五、数据类型</h2>
+                
+                <table>
+                    <tr>
+                        <th>类型</th>
+                        <th>含义</th>
+                        <th>示例</th>
+                    </tr>
+                    <tr>
+                        <td><code>int</code></td>
+                        <td>整数</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td><code>double</code></td>
+                        <td>双精度小数</td>
+                        <td>3.14</td>
+                    </tr>
+                    <tr>
+                        <td><code>float</code></td>
+                        <td>单精度小数</td>
+                        <td>3.14f</td>
+                    </tr>
+                    <tr>
+                        <td><code>char</code></td>
+                        <td>单个字符</td>
+                        <td>'A'</td>
+                    </tr>
+                    <tr>
+                        <td><code>bool</code></td>
+                        <td>布尔值</td>
+                        <td>true / false</td>
+                    </tr>
+                    <tr>
+                        <td><code>string</code></td>
+                        <td>字符串</td>
+                        <td>"Hello"</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2><span class="emoji">⚙️</span>六、类型转换</h2>
+                
+                <h3>隐式转换（自动）</h3>
+                <div class="code-block">
+int a = 3;
+double b = 2.5;
+cout &lt;&lt; a + b; <span class="comment">// 输出 5.5</span>
+                </div>
+
+                <h3>显式转换（强制）</h3>
+                <div class="code-block">
+double x = 3.99;
+int y = (int)x;
+cout &lt;&lt; y; <span class="comment">// 输出 3</span>
+                </div>
+            </div>
+
+            <div class="task-box">
+                <h2><span class="emoji">🧮</span>七、练习题</h2>
+                
+                <h3>✅ 练习1：信息输出</h3>
+                <p>定义变量保存姓名、年龄、身高并输出。</p>
+                
+                <h3>✅ 练习2：圆面积计算</h3>
+                <p>输入半径 <code>r</code>，输出圆的面积。</p>
+                
+                <div class="code-block">
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main() {
+    const double PI = 3.14159;
+    double r;
+    cin >> r;
+    cout &lt;&lt; "Area = " &lt;&lt; PI * r * r;
+    return 0;
+}
+                </div>
+                
+                <p>输入：</p>
+                <div class="output-box">
+2
+                </div>
+                
+                <p>输出：</p>
+                <div class="output-box">
+Area = 12.5664
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h2><span class="emoji">🧠</span>八、今日总结</h2>
+                
+                <table>
+                    <tr>
+                        <th>知识点</th>
+                        <th>内容</th>
+                    </tr>
+                    <tr>
+                        <td>头文件</td>
+                        <td>导入标准库功能</td>
+                    </tr>
+                    <tr>
+                        <td>main函数</td>
+                        <td>程序执行入口</td>
+                    </tr>
+                    <tr>
+                        <td>输入输出</td>
+                        <td>cin / cout</td>
+                    </tr>
+                    <tr>
+                        <td>数据类型</td>
+                        <td>int, double, char, bool, string</td>
+                    </tr>
+                    <tr>
+                        <td>常量</td>
+                        <td>使用 const 定义</td>
+                    </tr>
+                    <tr>
+                        <td>类型转换</td>
+                        <td>隐式与显式</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tip">
+                <h3>🧭 明日预告：</h3>
+                <p><strong>第3天 · 运算符与表达式</strong> —— 学习算术、关系与逻辑运算。</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>C++ 100 Days · 第2天 · 变量、常量与数据类型</p>
+        </div>
+    </div>
+</body>
+</html>
